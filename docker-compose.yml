@@ -1,0 +1,41 @@
+version: '3.8'
+networks:
+  astraltest:
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./.database/postgres/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: lavate
+    ports:
+      - 5432:5432
+    networks:
+      - astraltest
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 7s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - astraltest
+  api:
+    build: ./
+    command: ./main
+    ports:
+      - 8080:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+        restart: true
+      redis:
+        condition: service_started
+    networks:
+      - astraltest

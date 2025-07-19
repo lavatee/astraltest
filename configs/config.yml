@@ -1,0 +1,14 @@
+port: "8080"
+adminToken: "sfuqwejqjoiu93e29" #Токен админа
+postgres: #(можете заменить на свои данные)
+  host: "postgres" #!!!если будете запускать НЕ через docker-compose, НУЖНО БУДЕТ ПОМЕНЯТЬ НА "localhost"
+  port: "5432"
+  user: "postgres"
+  password: "lavate"
+  dbname: "postgres"
+  sslmode: "disable"
+redis:
+  host: "redis" #!!!если будете запускать НЕ через docker-compose, НУЖНО БУДЕТ ПОМЕНЯТЬ НА "localhost"
+  port: "6379"
+  password: ""
+  db: "0"

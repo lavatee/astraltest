@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS document_grants;
+DROP TABLE IF EXISTS document_files;
+DROP TABLE IF EXISTS document_data;
+DROP TABLE IF EXISTS documents;
+DROP TABLE IF EXISTS sessions;
+DROP TABLE IF EXISTS users;
